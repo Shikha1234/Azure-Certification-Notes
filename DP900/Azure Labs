@@ -1,0 +1,82 @@
+Lab - Azure SQL Database - Working with data - Resources
+Lab - Azure SQL Database - Working with data - Resources
+
+
+Data Definition Language – DDL statements
+
+These statements are used to define data structures.
+
+These statements can be used to create, alter or drop data structures.
+
+ALTER – Can be used to alter a table
+
+CREATE – Can be used to create a table
+
+DROP – Can be used to drop a table
+
+Data Manipulation Language – DML statements
+
+These statements are used to work with the data within a database.
+
+INSERT – This is used to insert data into a database table.
+
+SELECT – This can be used to query for data from within a database table.
+
+UPDATE – This can be used to update data from within a database table.
+
+DELETE - This can be used to delete data from within a database table.
+
+Use the following statements to create tables and insert data into the tables
+
+Creation of tables
+
+CREATE TABLE Customer (
+    CustomerID varchar(100) NOT NULL,
+    CustomerName varchar(1000),    
+    PRIMARY KEY (CustomerID)
+);
+
+
+CREATE TABLE Course (
+    CourseID varchar(100) NOT NULL,
+    CourseName varchar(1000),
+    Price real,    
+    PRIMARY KEY (CourseID)
+);
+
+
+CREATE TABLE Orders (
+    OrderID varchar(100) NOT NULL,
+    CourseID varchar(100),
+    CustomerID varchar(100),    
+    Discountpercent int,
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+);
+
+
+Inserting data into tables
+
+INSERT INTO Customer(CustomerID,CustomerName) values ('C1','UserA');
+INSERT INTO Customer(CustomerID,CustomerName) values ('C2','UserB');
+INSERT INTO Customer(CustomerID,CustomerName) values ('C3','UserC');
+
+
+INSERT INTO COURSE(CourseID,CourseName,Price) values ('D1','AZ-900',99.99);
+INSERT INTO COURSE(CourseID,CourseName,Price) values ('D2','DP-900',100.99);
+INSERT INTO COURSE(CourseID,CourseName,Price) values ('D3','AZ-104',89.99);
+
+
+INSERT INTO Orders(OrderID,CourseID,CustomerID,Discountpercent) values ('O1','D2','C1',90);
+INSERT INTO Orders(OrderID,CourseID,CustomerID,Discountpercent) values ('O2','D1','C2',50);
+INSERT INTO Orders(OrderID,CourseID,CustomerID,Discountpercent) values ('O3','D3','C3',60);
+Selecting data from tables
+
+SELECT * FROM Customer;
+
+SELECT * FROM Course;
+
+SELECT * FROM Orders;
+
+Fullscreen

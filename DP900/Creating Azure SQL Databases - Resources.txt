@@ -1,0 +1,40 @@
+Creating Azure SQL Databases - Resources
+Creating Azure SQL Databases - Resources
+Use the following commands as a reference for creating an Azure SQL database using PowerShell
+
+1. Remember to change the subscription id. Also ensure to give a unique name for the database server
+
+$SubscriptionId = '20c6eec9-2d80-4700-b0f6-4fde579a8783'
+$resourceGroupName = "datagrp"
+$location = "West US"
+$adminSqlLogin = "demoadmin"
+$password = "AzureSQL@123"
+$databaseName = "newdb"
+$serverName="demoserver4005001"
+ 
+Set-AzContext -SubscriptionId $subscriptionId 
+ 
+$server = New-AzSqlServer -ResourceGroupName $resourceGroupName -ServerName $serverName -Location $location -SqlAdministratorCredentials $(New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $adminSqlLogin, $(ConvertTo-SecureString -String $password -AsPlainText -Force))
+ 
+$database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName -ServerName $serverName -DatabaseName $databaseName -RequestedServiceObjectiveName "S0"
+2. Use the following commands as a reference for creating an Azure SQL database using Azure CLI
+
+$resourceGroupName = "datagrp"
+$location = "Central US"
+$adminSqlLogin = "demoadmin"
+$password = "AzureSQL@123"
+$databaseName = "newdb1"
+$serverName="newdemoserver4005001"
+ 
+az sql server create --name $serverName --resource-group $resourceGroupName --location $location --admin-user $adminSqlLogin --admin-password $password
+ 
+az sql db create --resource-group $resourceGroupName --server $serverName --name $databaseName --service-objective S0
+3. If you want to use Azure CLI on your local system, you first have to download the CLI tool
+
+https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
+
+Next before you can execute any commands , you first have to issue the az login command to log into your Azure account
+
+After you enter the az login command, you will be presented with the screen to enter the Azure account details
+
+

@@ -1,0 +1,10 @@
+Lab - Using sqlcmd - Resources
+You can use the following commands as a reference for working for sqlcmd
+
+sqlcmd -S demoserver100012.database.windows.net -d demodb -U demousr -P AzurePortal@123 -I
+select * from course
+GO
+:setvar SQLCMDMAXVARTYPEWIDTH 30
+:setvar SQLCMDMAXFIXEDTYPEWIDTH 30
+select * from course
+GO

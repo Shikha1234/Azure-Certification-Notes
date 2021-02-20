@@ -1,0 +1,13 @@
+Azure SQL Database - Adding SQL users - Resources
+You can use the following commands as reference for adding SQL users
+
+// Remember to execute the below command as the database server level
+
+CREATE LOGIN newusr
+WITH PASSWORD = 'AzurePortal@123';
+// Remember to execute the below command as the database level
+
+CREATE USER newusr
+FROM LOGIN newusr
+ 
+ALTER ROLE db_datareader ADD MEMBER newusr;
